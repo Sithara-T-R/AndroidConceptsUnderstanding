@@ -15,7 +15,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     private String[] list;
     private LayoutInflater inflater;
 
-    public MyAdapter(String[] list, Context context){
+    public MyAdapter(String[] list, Context context) {
         this.list = list;
         this.context = context;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -29,8 +29,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
-
+    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        holder.getButton().setText(list[position]);
     }
 
     @Override
@@ -41,15 +41,15 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         private Button button;
-        private View.OnClickListener onClickListener =(View v) -> {
-           switch (getAdapterPosition()){
+        private View.OnClickListener onClickListener = (View v) -> {
+            switch (getAdapterPosition()) {
 
-               case 0:
-                   EventsInjection.getInstance().inject(MyConstants.RETROFIT);
-                   break;
+                case 0:
+                    EventsInjection.getInstance().inject(MyConstants.RETROFIT);
+                    break;
 
 
-           }
+            }
         };
 
         public MyViewHolder(@NonNull View itemView) {
@@ -57,6 +57,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             button = itemView.findViewById(R.id.button_name);
 
             button.setOnClickListener(onClickListener);
+        }
+
+        public Button getButton() {
+            return button;
         }
     }
 }
