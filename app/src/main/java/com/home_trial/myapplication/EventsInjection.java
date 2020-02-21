@@ -1,7 +1,5 @@
 package com.home_trial.myapplication;
 
-import java.util.Vector;
-
 public class EventsInjection {
 
     private static EventsInjection eventsInjection;

@@ -14,8 +14,6 @@ import android.view.ViewGroup;
 
 import com.home_trial.myapplication.retrofit_trial.RetrofitFragment;
 
-import retrofit2.Retrofit;
-
 import static com.home_trial.myapplication.MyConstants.RETROFIT;
 
 public class MainFragment extends Fragment implements EventsInjection.Injector {

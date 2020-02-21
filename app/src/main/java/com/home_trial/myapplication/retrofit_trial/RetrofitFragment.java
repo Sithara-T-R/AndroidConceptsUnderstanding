@@ -12,8 +12,6 @@ import android.widget.Button;
 
 import com.home_trial.myapplication.R;
 
-import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -57,16 +55,17 @@ public class RetrofitFragment extends Fragment implements View.OnClickListener {
 
         ApiCaller apiCaller = retrofit.create(ApiCaller.class);
         Call<EmployeeData> employeeData = apiCaller.getData();
-        Log.e(TAG, "startFetchingUsingRetrofit: employyeeData =="+employeeData );
         employeeData.enqueue(new Callback<EmployeeData>() {
             @Override
-            public void onResponse(Call<EmployeeData> call, Response<EmployeeData> response) {
-                Log.e(TAG, "onResponse: "+response.body().getData()[0].getEmployee_name());
+            public void onResponse(Call<EmployeeData> call,
+                                   Response<EmployeeData> response) {
+                Log.d(TAG, "onResponse: "+response.body());
             }
 
             @Override
-            public void onFailure(Call<EmployeeData> call, Throwable t) {
-                Log.e(TAG, "onFailure: "+t.getMessage()+ " , call == "+call.request() );
+            public void onFailure(Call<EmployeeData> call,
+                                  Throwable t) {
+                Log.e(TAG, "onFailure: "+t.getMessage());
             }
         });
     }
