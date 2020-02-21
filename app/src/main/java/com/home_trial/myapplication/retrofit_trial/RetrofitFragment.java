@@ -56,17 +56,17 @@ public class RetrofitFragment extends Fragment implements View.OnClickListener {
                 .build();
 
         ApiCaller apiCaller = retrofit.create(ApiCaller.class);
-        Call<List<EmployeeData>> employeeData = apiCaller.getData();
+        Call<EmployeeData> employeeData = apiCaller.getData();
         Log.e(TAG, "startFetchingUsingRetrofit: employyeeData =="+employeeData );
-        employeeData.enqueue(new Callback<List<EmployeeData>>() {
+        employeeData.enqueue(new Callback<EmployeeData>() {
             @Override
-            public void onResponse(Call<List<EmployeeData>> call, Response<List<EmployeeData>> response) {
-                Log.e(TAG, "onResponse: "+response.body());
+            public void onResponse(Call<EmployeeData> call, Response<EmployeeData> response) {
+                Log.e(TAG, "onResponse: "+response.body().getData()[0].getEmployee_name());
             }
 
             @Override
-            public void onFailure(Call<List<EmployeeData>> call, Throwable t) {
-                Log.e(TAG, "onFailure: "+t.getMessage() );
+            public void onFailure(Call<EmployeeData> call, Throwable t) {
+                Log.e(TAG, "onFailure: "+t.getMessage()+ " , call == "+call.request() );
             }
         });
     }

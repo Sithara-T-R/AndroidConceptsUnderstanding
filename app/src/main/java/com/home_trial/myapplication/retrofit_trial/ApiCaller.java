@@ -10,5 +10,5 @@ public interface ApiCaller {
     public String BASE_URL = "https://dummy.restapiexample.com/api/v1/";
 
     @GET("employees")
-    Call<List<EmployeeData>> getData();
+    Call<EmployeeData> getData();
 }
